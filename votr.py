@@ -6,6 +6,7 @@ from flask_admin import Admin
 from admin import AdminView, TopicView
 
 import os
+import time
 import config
 import jwt
 import requests
@@ -93,6 +94,10 @@ def init_rollbar():
 
 @votr.route('/')
 def home():
+    if request.url.startswith('https://'):
+        return redirect("https://127.0.0.1/polls/1", code=301)
+    return redirect("/polls/1", code=301)
+
     id_token = session.get('id_token')
     email = session.get('email')
     email_verified = request.args.get('email_verified')
@@ -177,3 +182,12 @@ def polls():
 def poll(poll_name):
 
     return render_template('polls.html')
+
+
+if __name__ == "__main__":
+    while True:
+        try:
+            votr.run(host="0.0.0.0", port=80, threaded=True, debug=False)
+            time.sleep(1)
+        except KeyboardInterrupt:
+            break

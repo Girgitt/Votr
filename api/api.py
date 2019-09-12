@@ -130,8 +130,8 @@ def api_polls_options():
 
 
 @api.route('/poll/vote', methods=['PATCH'])
-@cross_origin(headers=['Content-Type', 'Authorization'])
-@requires_auth
+#@cross_origin(headers=['Content-Type', 'Authorization'])
+#@requires_auth
 def api_poll_vote():
     poll = request.get_json()
 
@@ -141,13 +141,13 @@ def api_poll_vote():
 
     # Get topic and username
     topic = Topics.query.filter_by(title=poll_title, status=True).first()
-    user = _request_ctx_stack.top.current_user
-    user_identifier = user.get('email') or user.get('nickname')
+    #user = _request_ctx_stack.top.current_user
+    #user_identifier = user.get('email') or user.get('nickname')
 
     # if the user has not verified their email abort
-    if not user.get('email_verified'):
-        return jsonify({'message':
-                        'You have to verify your email before you vote'})
+    #if not user.get('email_verified'):
+    #    return jsonify({'message':
+    #                    'You have to verify your email before you vote'})
 
     # if poll was closed in the background before user voted
     if not topic:
@@ -158,18 +158,18 @@ def api_poll_vote():
         filter(Options.name.like(option)).first()
 
     # check if the user has voted on this poll
-    poll_count = UserPolls.query.filter_by(topic_id=topic.id).\
-        filter_by(user_identifier=user_identifier).count()
+    #poll_count = UserPolls.query.filter_by(topic_id=topic.id).\
+    #    filter_by(user_identifier=user_identifier).count()
 
-    if poll_count:
-        return jsonify({'message':
-                        'Multiple votes are not allowed on this poll'})
+    #if poll_count:
+    #    return jsonify({'message':
+    #                    'Multiple votes are not allowed on this poll'})
 
     if option:
         # record user and poll
-        user_poll = UserPolls(topic_id=topic.id,
-                              user_identifier=user_identifier)
-        db.session.add(user_poll)
+        #user_poll = UserPolls(topic_id=topic.id,
+        #                      user_identifier=user_identifier)
+        #db.session.add(user_poll)
 
         # increment vote_count by 1 if the option was found
         option.vote_count += 1

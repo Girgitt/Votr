@@ -305,7 +305,7 @@ var AllPolls = React.createClass({
     // pollName is available as a prop
     this.pollName = this.props.routeParams.pollName
 
-    this.classContext = this.pollName ? 'col s12 m4 offset-m4' : 'col 12 m4'
+    this.classContext = this.pollName ? 'col s12 m12' : 'col 12 m4'
     return {polls: {'Polls': []}, header: '', loading: true};
   },
 
@@ -335,6 +335,7 @@ var AllPolls = React.createClass({
 
   componentDidMount: function(){
     this.loadPollsFromServer();
+    setInterval(this.loadPollsFromServer, 5000);
   },
 
   render: function(){

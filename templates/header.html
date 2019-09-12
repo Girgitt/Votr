@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 <title>Votr! - Create polls online</title>
 
+
 <!-- Rollbar -->
+<!--
 <script>
 var _rollbarConfig = {
     accessToken: "{{ g.rollbar_token }}",
@@ -18,25 +20,31 @@ var _rollbarConfig = {
 // Rollbar Snippet
 !function(r){function e(t){if(o[t])return o[t].exports;var n=o[t]={exports:{},id:t,loaded:!1};return r[t].call(n.exports,n,n.exports,e),n.loaded=!0,n.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var t=o(1).Rollbar,n=o(2);_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://d37gvrvc0wt4s1.cloudfront.net/js/v1.9/rollbar.min.js";var a=t.init(window,_rollbarConfig),i=n(a,_rollbarConfig);a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,i)},function(r,e){"use strict";function o(r){return function(){try{return r.apply(this,arguments)}catch(e){try{console.error("[Rollbar]: Internal error",e)}catch(o){}}}}function t(r,e,o){window._rollbarWrappedError&&(o[4]||(o[4]=window._rollbarWrappedError),o[5]||(o[5]=window._rollbarWrappedError._rollbarContext),window._rollbarWrappedError=null),r.uncaughtError.apply(r,o),e&&e.apply(window,o)}function n(r){var e=function(){var e=Array.prototype.slice.call(arguments,0);t(r,r._rollbarOldOnError,e)};return e.belongsToShim=!0,e}function a(r){this.shimId=++c,this.notifier=null,this.parentShim=r,this._rollbarOldOnError=null}function i(r){var e=a;return o(function(){if(this.notifier)return this.notifier[r].apply(this.notifier,arguments);var o=this,t="scope"===r;t&&(o=new e(this));var n=Array.prototype.slice.call(arguments,0),a={shim:o,method:r,args:n,ts:new Date};return window._rollbarShimQueue.push(a),t?o:void 0})}function l(r,e){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){var o=e.addEventListener;e.addEventListener=function(e,t,n){o.call(this,e,r.wrap(t),n)};var t=e.removeEventListener;e.removeEventListener=function(r,e,o){t.call(this,r,e&&e._wrapped?e._wrapped:e,o)}}}var c=0;a.init=function(r,e){var t=e.globalAlias||"Rollbar";if("object"==typeof r[t])return r[t];r._rollbarShimQueue=[],r._rollbarWrappedError=null,e=e||{};var i=new a;return o(function(){if(i.configure(e),e.captureUncaught){i._rollbarOldOnError=r.onerror,r.onerror=n(i);var o,a,c="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(o=0;o<c.length;++o)a=c[o],r[a]&&r[a].prototype&&l(i,r[a].prototype)}return e.captureUnhandledRejections&&(i._unhandledRejectionHandler=function(r){var e=r.reason,o=r.promise,t=r.detail;!e&&t&&(e=t.reason,o=t.promise),i.unhandledRejection(e,o)},r.addEventListener("unhandledrejection",i._unhandledRejectionHandler)),r[t]=i,i})()},a.prototype.loadFull=function(r,e,t,n,a){var i=function(){var e;if(void 0===r._rollbarPayloadQueue){var o,t,n,i;for(e=new Error("rollbar.js did not load");o=r._rollbarShimQueue.shift();)for(n=o.args,i=0;i<n.length;++i)if(t=n[i],"function"==typeof t){t(e);break}}"function"==typeof a&&a(e)},l=!1,c=e.createElement("script"),p=e.getElementsByTagName("script")[0],d=p.parentNode;c.crossOrigin="",c.src=n.rollbarJsUrl,c.async=!t,c.onload=c.onreadystatechange=o(function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){c.onload=c.onreadystatechange=null;try{d.removeChild(c)}catch(r){}l=!0,i()}}),d.insertBefore(c,p)},a.prototype.wrap=function(r,e){try{var o;if(o="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._wrapped){r._wrapped=function(){try{return r.apply(this,arguments)}catch(e){throw"string"==typeof e&&(e=new String(e)),e._rollbarContext=o()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e,e}},r._wrapped._isWrap=!0;for(var t in r)r.hasOwnProperty(t)&&(r._wrapped[t]=r[t])}return r._wrapped}catch(n){return r}};for(var p="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError,unhandledRejection".split(","),d=0;d<p.length;++d)a.prototype[p[d]]=i(p[d]);r.exports={Rollbar:a,_rollbarWindowOnError:t}},function(r,e){"use strict";r.exports=function(r,e){return function(o){if(!o&&!window._rollbarInitialized){var t=window.RollbarNotifier,n=e||{},a=n.globalAlias||"Rollbar",i=window.Rollbar.init(n,r);i._processShimQueue(window._rollbarShimQueue||[]),window[a]=i,window._rollbarInitialized=!0,t.processPayloads()}}}}]);
 // End Rollbar Snippet
+-->
 </script>
 
 <!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/material_icons.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="{{ url_for('static', filename='css/dosis.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 <!-- React JS -->
-<script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
-<script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
-<script src="https://npmcdn.com/react-router@2.8.1/umd/ReactRouter.min.js"></script>
-<script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+<!--<script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>-->
+<script src="/static/js/react.js"></script>
+<script src="/static/js/react-dom.js"></script>
+<!-- <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script> -->
+<script src="/static/js/ReactRouter.min.js"></script>
+<!--<script src="https://npmcdn.com/react-router@2.8.1/umd/ReactRouter.min.js"></script> -->
+<script src="/static/js/browser.min.js"></script>
+<!--<script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>-->
 <script type="text/babel" src="{{ url_for('static', filename='js/polls.js') }}"></script>
 
-<script src="http://cdn.auth0.com/js/lock/10.7.2/lock.min.js"></script>
+<!--<script src="http://cdn.auth0.com/js/lock/10.7.2/lock.min.js"></script>-->
 <script src="{{ url_for('static', filename='js/sweetalert.min.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sweetalert.css') }}">
-<script>
+<!--
+  <script>
   var base_url = window.location
 
   var lock = new Auth0Lock('Hiv6T72A0eqhq4RXAFXx0FcncXW5xTsD', 'danidee.auth0.com', {
@@ -54,12 +62,31 @@ var _rollbarConfig = {
     localStorage.setItem('id_token', '{{ id_token }}');
   {% endif %}
 </script>
+-->
 </head>
 
 <body>
 <nav class="white" role="navigation">
   <div class="nav-wrapper container">
-    <a id="logo-container" href="{{ url_for('home') }}" class="brand-logo">VOTR</a>
+      <!--<a id="prev-poll" href="{{ url_for('home') }}" class="brand-logo"></a>-->
+      <a id="next-poll" href="{{ url_for('home') }}" class="brand-logo"></a>
+       <script>
+      var pageURL = window.location.href;
+      var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+      var prev_poll = parseInt(lastURLSegment)-1
+      var next_poll = parseInt(lastURLSegment)+1
+      if(next_poll > 16){
+        document.getElementById("next-poll").innerHTML = "first ("+1+")"
+        document.getElementById("next-poll").href = 1
+      }
+      else{
+        document.getElementById("next-poll").innerHTML = "next ("+next_poll+")"
+        document.getElementById("next-poll").href = next_poll
+      }
+
+      document.getElementById("prev-poll").innerHTML = prev_poll
+      document.getElementById("prev-poll").href = prev_poll
+    </script>
     <ul class="right hide-on-med-and-down">
       <ul id="dropdown" class="dropdown-content">
         <li><p style="margin-left: 14px;">{% if session['profile'] %}{{ session['profile']['nickname'] | capitalize }}{% endif %}</p></li>
@@ -81,6 +108,28 @@ var _rollbarConfig = {
     </ul>
 
     <ul id="nav-mobile" class="side-nav">
+      <li><a href="/polls/1">1</a></li>
+      <li><a href="/polls/2">2</a></li>
+      <li><a href="/polls/3">3</a></li>
+      <li><a href="/polls/4">4</a></li>
+      <li><a href="/polls/5">5</a></li>
+      <li><a href="/polls/6">6</a></li>
+      <li><a href="/polls/7">7</a></li>
+      <li><a href="/polls/8">8</a></li>
+      <li><a href="/polls/9">9</a></li>
+      <li><a href="/polls/10">10</a></li>
+      <li><a href="/polls/11">11</a></li>
+      <li><a href="/polls/12">12</a></li>
+      <li><a href="/polls/13">13</a></li>
+      <li><a href="/polls/14">14</a></li>
+      <li><a href="/polls/15">15</a></li>
+      <li><a href="/polls/16">16</a></li>
+      <!--
+      <li><a href="/polls/17">17</a></li>
+      <li><a href="/polls/18">18</a></li>
+      <li><a href="/polls/19">19</a></li>
+      <li><a href="/polls/20">20</a></li>
+
       <li><a href="{{ url_for('polls') }}">Dashboard</a></li>
 
       {% if not session['profile'] %}
@@ -90,7 +139,7 @@ var _rollbarConfig = {
       <li><a href="https://danidee.auth0.com/v2/logout?returnTo={{ logout_url }}">Sign out</a></li>
 
       {% endif %}
-
+      -->
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>
